@@ -1,38 +1,3 @@
-# Blog post workflow  [![Build and test](https://github.com/gautamkrishnar/blog-post-workflow/workflows/Build%20and%20test/badge.svg?branch=master)](https://github.com/gautamkrishnar/blog-post-workflow/actions?query=workflow%3A%22Build+and+test%22)
-
-![preview](https://user-images.githubusercontent.com/8397274/88047382-29b8b280-cb6f-11ea-9efb-2af2b10f3e0c.png)
-
-
-### How to use
-- Go to your repository
-- Add the following section to your **README.md** file, you can give whatever title you want. Just make sure that you use `<!-- BLOG-POST-LIST:START --><!-- BLOG-POST-LIST:END -->` in your readme. The workflow will replace this comment with the actual blog post list: 
-```markdown
-# Blog posts
-<!-- BLOG-POST-LIST:START -->
-<!-- BLOG-POST-LIST:END -->
-```
-- Create a folder named `.github` and create `workflows` folder inside it if it doesn't exist.
-- Create a new file named `blog-post-workflow.yml` with the following contents inside the workflows folder:
-```yaml
-name: Latest blog post workflow
-on:
-  schedule:
-    # Runs every hour
-    - cron: '0 * * * *'
-
-jobs:
-  update-readme-with-blog:
-    name: Update this repo's README with latest blog posts
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: gautamkrishnar/blog-post-workflow@master
-        with:
-          feed_list: "https://dev.to/feed/gautamkrishnar,https://www.gautamkrishnar.com/feed/"
-```
-- Replace the above url list with your own rss feed urls. See [popular-sources](#popular-sources) for a list of common RSS feed urls.
-- Commit and wait for it to run
-
 ### Options
 This workflow has additional options that you can use to customize it for your use case, following are the list of options available:
 
